@@ -14,6 +14,7 @@ class Current extends Bank{
     }
     //Current: methods used deposit,withdraw,fixedDeposit,finalBal;
     void deposit(double amount,int day){
+        
         acc_bal+=amount;
         System.out.println(amount+" gets credited into your account");
         System.out.println("The account balance rn is: "+acc_bal);
