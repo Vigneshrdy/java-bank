@@ -1,3 +1,4 @@
+package BANK;
 
 class Current extends Bank{
     double acc_bal;

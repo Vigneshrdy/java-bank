@@ -1,3 +1,5 @@
+package BANK;
+// package BANK;
 /*
  Preetam National Bank allows current and savings account. all types of account can withdraw and deposit
 1. Current account has a overdraft facility which allow you to withdraw more  money than your balance.

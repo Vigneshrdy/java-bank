@@ -1,3 +1,5 @@
+package BANK;
+
 
 class Savings extends Bank{
 //    Scanner s = new Scanner(System.in);

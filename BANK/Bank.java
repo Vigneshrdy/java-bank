@@ -1,3 +1,5 @@
+package BANK;
+// package BANK;
 
 abstract class Bank{
     static final String BankName ="Preetham National Bank";
