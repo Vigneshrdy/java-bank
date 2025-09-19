@@ -1,0 +1,113 @@
+/*
+Preetam National Bank allows current and savings account. all types of account can withdraw and deposit 
+1. Current account has a overdraft facility which allow you to withdraw more  money than your balance.
+2. It has an interest rate of only 5%
+3. Current account does not let you have FIxed Deposit
+4. There is no transaction limit
+Whereas saving account needs to maintain 1000 balance, Fixed Deposit is allowed for minimum of 2 years , 
+interest rate is 8.25% per annum. You can't remove money during the lock-in period.
+Transactions limit is only 50000 more than that the bank does not allow to withdraw in a given day.
+a)Ram opens 2 accounts in the bank, one savings with 10000 and current with 500 only.
+Shyam opens 2 account in the same bank, current account with 20000 and 40000 in savings account.
+b)Ram is businessman whose needs to do a lot of transactions in a single day. Ram deposits 20000 in savings account and 60000 in current account
+c)He makes an FD for 25000 for 3 years
+d)Ram needs to pay 6000 to paper vendor.
+4000 to canteen guy, 25000 to transport.
+Ram transfers 20000 to Shyam . Can he transfer?
+is Ram allowed to make an FD?
+What would be his amount when it matures.
+e)Shyam needs to send 30000 to his sister. How can he do that?
+Shyam needs to pay school fees 40000 would he be allowed to pay
+f)Shyam receives a payment and deposits 45000
+g)Again he wants to make FD of 5000 for six months,Would he allowed.What is his total money now in both the accounts
+
+
+
+*/
+class Account {
+    double balance = 0.0;
+    String name;
+    void deposit(double trans) {
+        this.balance += trans;
+    }
+}
+
+class current extends Account {
+    savings saved;
+    static double over = 0.05;
+    double over_amt;
+    double od_max = 10000.00;
+    current(String n, double bal) {
+        this.balance = bal;
+        this.name = n;
+    }
+    
+    void withdraw(double trans) {
+        if(trans < balance) {
+            balance -= trans;
+        } else if(trans + over_amt <= od_max){
+            over_amt = trans;
+        }
+        else {
+            System.out.println("Transaction failed");
+        }
+    }
+    void linkSavings(savings s) {
+        saved = s;
+    }
+}
+class savings extends Account {
+    current SharedCurrent;
+    double transactions;
+    static double max_trn = 50000.00;
+    boolean fd = false;
+    double fd_amt;
+    static double fd_rate = 0.0825;
+    double time;
+    double maturity_amt;
+    
+    savings (String n, double bal) {
+        if(bal >= 1000.00) {
+            this.balance = bal;
+            this.name = n;
+        } else {
+            System.out.println("Minimum balance must be 1000.00 to create a savings account");
+        }
+    }
+    
+    void withdraw(double trans) {
+        if((trans < balance - 1000.00) & (transactions + trans <= max_trn)) {
+            balance -= trans;
+            transactions += trans;
+        } else {
+            System.out.println("Transaction failed. Insufficient fund");
+        }
+    }
+    
+    void LinkCurrent (current c) {
+        SharedCurrent = c;
+    }
+}
+
+class fixedDeposit extends savings {
+    void createFD (double amt, double time) {
+        
+        if((t >= 2) & (amt < balance-1000.00)) {
+                this.fd = true;
+                this.time = t;
+                this.fd_amt = amt;
+                this.balance -= amt;
+                this.maturity_amt = this.fd_amt*this.time;
+                
+            }
+            else {
+                System.out.println("FD not created. Minimum lock-in period is 2 years");
+            }
+    }
+}
+
+class Test {
+    public static void main(String[] args) {
+        // 
+    }
+}
